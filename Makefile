@@ -48,7 +48,7 @@ MAKEFILE_BUILD := script/Makefile.build
 MAKEFILE_TEST_BUILD := script/Makefile.test.build
 export MAKEFILE_BUILD MAKEFILE_TEST_BUILD
 
-dirs := ipc/ block/ drivers/
+dirs := ipc/ block/ drivers/ fs/ net/ sound/
 dirs := ${patsubst %/,%,$(filter %/, $(dirs))}
 PHONY += $(dirs)
 $(dirs): FORCE
