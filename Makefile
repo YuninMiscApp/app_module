@@ -27,7 +27,7 @@ LINK_SHARED := -Wl,-Bdynamic
 
 export AS LD CC CPP AR NM STRIP OBJCOPY OBJDUMP RANLIB CFLAGS LDFLAGS LINK_STATIC LINK_SHARED
 
-LD_SCRIPT ?= ./default.lds
+LD_SCRIPT ?= script/default.lds
 export LD_SCRIPT
 
 TEST_CFLAGS ?= ${CFLAGS}
@@ -36,8 +36,8 @@ LD_LIBS := -lipc -lblock
 
 export TEST_CFLAGS LINK_PATH LD_LIBS
 
-MAKEFILE_BUILD := Makefile.build
-MAKEFILE_TEST_BUILD := Makefile.test.build
+MAKEFILE_BUILD := script/Makefile.build
+MAKEFILE_TEST_BUILD := script/Makefile.test.build
 export MAKEFILE_BUILD MAKEFILE_TEST_BUILD
 
 dirs := ipc/ block/ drivers/
