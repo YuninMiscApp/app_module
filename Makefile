@@ -18,6 +18,14 @@ RANLIB	= $(CROSS_COMPILE)RANLIB
 CFLAGS =
 CFLAGS += -rdynamic -pipe -O2 -Wall
 CFLAGS += -I include
+CFLAGS += -I block
+CFLAGS += -I drivers
+CFLAGS += -I drivers/char
+CFLAGS += -I drivers/i2c
+CFLAGS += -I drivers/input
+CFLAGS += -I drivers/spi
+CFLAGS += -I ipc
+
 
 LDFLAGS = 
 LDFLAGS += -fPIC -rdynamic -shared 
