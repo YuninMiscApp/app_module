@@ -40,7 +40,16 @@ export LD_SCRIPT
 
 TEST_CFLAGS ?= ${CFLAGS}
 LINK_PATH := -L libs
-LD_LIBS := -lipc -lblock
+LD_LIBS := -lipc 
+LD_LIBS += -lblock
+LD_LIBS += -ldrivers_char
+LD_LIBS += -ldrivers_i2c
+LD_LIBS += -ldrivers_i2c_chips
+LD_LIBS += -ldrivers_input
+LD_LIBS += -ldrivers_spi
+LD_LIBS += -lfs
+LD_LIBS += -lnet
+LD_LIBS += -lsound
 
 export TEST_CFLAGS LINK_PATH LD_LIBS
 
