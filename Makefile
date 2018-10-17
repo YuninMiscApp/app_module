@@ -27,6 +27,9 @@ LINK_SHARED := -Wl,-Bdynamic
 
 export AS LD CC CPP AR NM STRIP OBJCOPY OBJDUMP RANLIB CFLAGS LDFLAGS LINK_STATIC LINK_SHARED
 
+LD_SCRIPT ?= ./default.lds
+export LD_SCRIPT
+
 TEST_CFLAGS ?= ${CFLAGS}
 LINK_PATH := -L libs
 LD_LIBS := -lipc -lblock
@@ -47,7 +50,7 @@ objs := init/main.o
 
 all: $(dirs) ${objs}
 	@mkdir -p bin
-	$(CC) ${CFLAGS} ${LINK_PATH} -o ${TARGET_NAME} ${objs} ${LINK_STATIC} ${LD_LIBS} ${LINK_SHARED}
+	$(CC) ${CFLAGS} ${LINK_PATH} -T ${LD_SCRIPT} -o ${TARGET_NAME} ${objs} ${LINK_STATIC} ${LD_LIBS} ${LINK_SHARED}
 
 test_dirs := tests/
 test_dirs := ${patsubst %/,%,$(filter %/, $(test_dirs))}
