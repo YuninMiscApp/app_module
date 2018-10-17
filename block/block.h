@@ -32,10 +32,6 @@ typedef struct _block_info_ block_info_t;
 /* Exported variables --------------------------------------------------------*/
 /* Exported macro ------------------------------------------------------------*/
 /* Exported functions ------------------------------------------------------- */
-char* block_name_get(block_info_t *p);
-block_info_t *block_new(void);
-int block_destroy(block_info_t *p);
-
 
 #ifdef  __cplusplus
 }

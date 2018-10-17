@@ -22,6 +22,7 @@
 #include <string.h>
 
 #include"spi.h"
+#include"init.h"
 
 #ifdef  __cplusplus
 extern "C" {
@@ -93,6 +94,21 @@ int spi_destroy(spi_info_t *p)
 	free(p);
     return 0;
 }
+
+static int spi_init(void)
+{
+	printf(COLOUR_GREEN"do %s (%p)...\n"COLOUR_NONE,__func__,spi_init);
+    return 0;
+}
+
+static void spi_exit(void)
+{
+	printf(COLOUR_RED"do %s (%p)...\n"COLOUR_NONE,__func__,spi_exit);
+}
+
+
+module_init(spi_init);
+module_exit(spi_exit);
 
 
 #ifdef  __cplusplus

@@ -22,6 +22,7 @@
 #include <string.h>
 
 #include"input.h"
+#include"init.h"
 
 #ifdef  __cplusplus
 extern "C" {
@@ -94,6 +95,23 @@ int input_destroy(input_info_t *p)
     return 0;
 }
 
+
+
+
+static int input_init(void)
+{
+	printf(COLOUR_GREEN"do %s (%p)...\n"COLOUR_NONE,__func__,input_init);
+    return 0;
+}
+
+static void input_exit(void)
+{
+	printf(COLOUR_RED"do %s (%p)...\n"COLOUR_NONE,__func__,input_exit);
+}
+
+
+module_init(input_init);
+module_exit(input_exit);
 
 #ifdef  __cplusplus
 }

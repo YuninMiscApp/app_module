@@ -23,6 +23,7 @@
 
 #include"type.h"
 #include"ipc.h"
+#include"init.h"
 
 #ifdef  __cplusplus
 extern "C" {
@@ -94,6 +95,21 @@ int ipc_destroy(ipc_info_t *p)
     return 0;
 }
 
+
+static int ipc_init(void)
+{
+	printf(COLOUR_GREEN"do %s (%p)...\n"COLOUR_NONE,__func__,ipc_init);
+    return 0;
+}
+
+static void ipc_exit(void)
+{
+	printf(COLOUR_RED"do %s (%p)...\n"COLOUR_NONE,__func__,ipc_exit);
+}
+
+
+module_init(ipc_init);
+module_exit(ipc_exit);
 
 #ifdef  __cplusplus
 }

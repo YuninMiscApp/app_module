@@ -43,6 +43,7 @@ SECTIONS
   .init           :
   {
     KEEP (*(SORT_NONE(.init)))
+    . = ALIGN(4);
     __initcall_start = .;
 	*(.initcall0.init)
 	*(.initcall0s.init)

@@ -22,6 +22,7 @@
 #include <string.h>
 
 #include"char.h"
+#include"init.h"
 
 #ifdef  __cplusplus
 extern "C" {
@@ -94,6 +95,22 @@ int char_destroy(char_info_t *p)
     return 0;
 }
 
+
+
+static int char_init(void)
+{
+	printf(COLOUR_GREEN"do %s (%p)...\n"COLOUR_NONE,__func__,char_init);
+    return 0;
+}
+
+static void char_exit(void)
+{
+	printf(COLOUR_RED"do %s (%p)...\n"COLOUR_NONE,__func__,char_exit);
+}
+
+
+module_init(char_init);
+module_exit(char_exit);
 
 #ifdef  __cplusplus
 }

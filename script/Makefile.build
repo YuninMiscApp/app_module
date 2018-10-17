@@ -28,7 +28,7 @@ $(builtin-target): $(obj-y) FORCE
 	$(if ${obj-y},mkdir -p ./libs)
 	$(if ${obj-y},${CC} ${LDFLAGS} -o $@.so $(obj-y))
 	$(if ${obj-y},install -p -m 0644 $@.so ./libs)
-	$(if ${obj-y},${AR} crs $@.a $(obj-y)) 
+	$(if ${obj-y},${LD} -r -o $@.a $(obj-y)) 
 	$(if ${obj-y},install -p -m 0644 $@.a ./libs)	
 endif # builtin-target
 

@@ -22,6 +22,7 @@
 #include <string.h>
 
 #include"i2c.h"
+#include"init.h"
 
 #ifdef  __cplusplus
 extern "C" {
@@ -94,6 +95,20 @@ int i2c_destroy(i2c_info_t *p)
     return 0;
 }
 
+static int i2c_init(void)
+{
+	printf(COLOUR_GREEN"do %s (%p)...\n"COLOUR_NONE,__func__,i2c_init);
+    return 0;
+}
+
+static void i2c_exit(void)
+{
+	printf(COLOUR_RED"do %s (%p)...\n"COLOUR_NONE,__func__,i2c_exit);
+}
+
+
+module_init(i2c_init);
+module_exit(i2c_exit);
 
 #ifdef  __cplusplus
 }

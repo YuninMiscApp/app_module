@@ -91,7 +91,7 @@ typedef void (*exitcall_t)(void);
 
 
 // 模块初始化
-#define module_init(x)	__initcall(x);
+#define module_init(x)	pure_initcall(x);
 #define module_exit(x)	__exitcall(x);
 
 #ifdef  __cplusplus
