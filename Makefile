@@ -2,7 +2,7 @@
 
 PHONY : all
 
-TARGET_NAME ?= make_app
+TARGET_NAME ?= bin/module_app
 
 AS	= $(CROSS_COMPILE)as
 LD	= $(CROSS_COMPILE)ld
@@ -22,7 +22,10 @@ CFLAGS += -I include
 LDFLAGS = 
 LDFLAGS += -fPIC -rdynamic -shared 
 
-export AS LD CC CPP AR NM STRIP OBJCOPY OBJDUMP RANLIB CFLAGS LDFLAGS
+LINK_STATIC := -Wl,-Bstatic
+LINK_SHARED := -Wl,-Bdynamic
+
+export AS LD CC CPP AR NM STRIP OBJCOPY OBJDUMP RANLIB CFLAGS LDFLAGS LINK_STATIC LINK_SHARED
 
 TEST_CFLAGS ?= ${CFLAGS}
 LINK_PATH := -L libs
@@ -43,7 +46,8 @@ $(dirs): FORCE
 objs := init/main.o
 
 all: $(dirs) ${objs}
-	$(CC) ${CFLAGS} ${LINK_PATH} -o ${TARGET_NAME} ${objs} ${LD_LIBS}
+	@mkdir -p bin
+	$(CC) ${CFLAGS} ${LINK_PATH} -o ${TARGET_NAME} ${objs} ${LINK_STATIC} ${LD_LIBS} ${LINK_SHARED}
 
 test_dirs := tests/
 test_dirs := ${patsubst %/,%,$(filter %/, $(test_dirs))}
