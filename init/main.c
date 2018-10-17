@@ -19,6 +19,7 @@
 #include "type.h"
 #include "ipc.h"
 #include "block.h"
+#include "init.h"
 
 
 
@@ -31,17 +32,28 @@ extern "C" {
 /* Private variables ---------------------------------------------------------*/
 /* Private function prototypes -----------------------------------------------*/
 /* Private functions ---------------------------------------------------------*/
+extern initcall_t __initcall_start[], __initcall_end[];
+
+void initcalls(void)
+{
+	initcall_t *call;
+	int result;
+	printf("%s do init call... \n", __func__);
+	for (call = __initcall_start; call < __initcall_end; call++) 
+	{
+		result = (*call)();
+		if(result < 0)
+		{
+			printf("do_initcalls(%p): error code %d\n", call,result);
+		}
+	}
+}
 
 
 int
 main(int argc, char *argv[])
 {
-	block_info_t *blockInfo = block_new();
-	ASSERT(blockInfo);
-	ipc_info_t *ipcInfo = ipc_new();
-	ASSERT(ipcInfo);
-	printf("[block name]:%s,[ipc name]:%s\n\r"
-	,block_name_get(blockInfo),ipc_name_get(ipcInfo));
+	initcalls();
 	return 0;
 }
 
