@@ -35,8 +35,14 @@ LINK_SHARED := -Wl,-Bdynamic
 
 export AS LD CC CPP AR NM STRIP OBJCOPY OBJDUMP RANLIB CFLAGS LDFLAGS LINK_STATIC LINK_SHARED
 
-LD_SCRIPT ?= script/default.lds
+LD_SCRIPT ?= script/x86.lds
 export LD_SCRIPT
+
+ifeq ($(CROSS_COMPILE),arm-hisiv400-linux-)
+	LD_SCRIPT := script/arm.lds
+else
+	LD_SCRIPT := script/x86.lds
+endif
 
 TEST_CFLAGS ?= ${CFLAGS}
 LINK_PATH := -L libs
